@@ -426,6 +426,9 @@ class CRUDController implements ContainerAwareInterface
             $allElements = (bool) $data['all_elements'];
             $request->request->replace(array_merge($request->request->all(), $data));
         } else {
+            $request->request->set('idx', $request->get('idx', []));
+            $request->request->set('all_elements', $request->get('all_elements', false));
+            
             $action = $request->request->getAlnum('action');
             $idx = $request->request->get('idx', []);
             $allElements = $request->request->getBoolean('all_elements');
